@@ -10,14 +10,14 @@ public class GameDrawerTest {
     private GameDrawer drawer;
     @Before
     public void init(){
-        drawer = new GameDrawer(1000);
+        drawer = new GameDrawer();
     }
     @Test
     public void initGameFrameFromArray() throws Exception {
         int[][] data = new int[][]{{1,0,0},{0,1,0},{0,0,1}};
         drawer.initGameFrameFromArray(data);
 //        System.out.println("");
-        while (true);
+
     }
 
 }

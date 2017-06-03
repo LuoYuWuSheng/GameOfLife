@@ -13,28 +13,19 @@ import java.util.Scanner;
  */
 public class Game {
     private int height, width;
-    int freshTime=1000;
+
     int[][] graph;
     int[][] temp;
 
     GameDrawer gameDrawer=null;
 
-    public int getFreshTime() {
-        return freshTime;
-    }
-
-    public void setFreshTime(int freshTime) {
-        this.freshTime = freshTime;
-    }
     public Game() {
     }
 
-    public Game(int height, int width,int freshTime) {
+    public Game(int height, int width) {
         this.height = height;
         this.width = width;
-        this.freshTime = freshTime;
         this.graph = new int[height][width];
-        //this.temp = new int[height][width];
     }
 
     public void initFromArray(int height,int width,int[][] data) {
@@ -50,7 +41,6 @@ public class Game {
             Scanner sc = new Scanner(inputStream);
             this.height = sc.nextInt();
             this.width = sc.nextInt();
-            setFreshTime(sc.nextInt());
             this.graph = new int[height][width];
             sc.nextLine();
             for (int i = 0; i < height; i++) {
@@ -121,7 +111,7 @@ public class Game {
 
     private void paintByDrawer(){
         if(gameDrawer==null){
-            gameDrawer=new GameDrawer(freshTime);
+            gameDrawer=new GameDrawer();
             gameDrawer.initGameFrameFromArray(graph);
         }
         else {
@@ -129,15 +119,14 @@ public class Game {
         }
     }
     public void start(int generation) {
-        //initFromFile("input.txt");
         while (generation==0) {
             grow();
-            print(graph);
+            //print(graph);
             paintByDrawer();
         }
         for (int i = 0; i < generation; i++) {
             grow();
-            print(graph);
+            //print(graph);
             paintByDrawer();
         }
     }

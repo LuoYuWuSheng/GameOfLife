@@ -8,11 +8,7 @@ import javax.swing.*;
 public class GameDrawer {
     GameFrame gameFrame = null;
 
-
-    int freshTime = 1000;
-
-    public GameDrawer(int freshTime) {
-        this.freshTime = freshTime;
+    public GameDrawer() {
     }
 
     public void initGameFrameFromArray(int[][] a) {
@@ -22,19 +18,8 @@ public class GameDrawer {
     }
     public void freshFrameByArray(int[][] a){
         gameFrame.fresh(a);
-        try {
-            Thread.sleep(freshTime);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
-    public void setFreshTime(int freshTime) {
-        this.freshTime = freshTime;
-    }
 
-    public int getFreshTime() {
-        return freshTime;
-    }
 
 }
