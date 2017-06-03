@@ -15,7 +15,7 @@ public class GameDrawerTest {
     @Test
     public void initGameFrameFromArray() throws Exception {
         int[][] data = new int[][]{{1,0,0},{0,1,0},{0,0,1}};
-        drawer.initGameFrameFromArray(data);
+        //drawer.initGameFrameFromArray(data);
 //        System.out.println("");
 
     }

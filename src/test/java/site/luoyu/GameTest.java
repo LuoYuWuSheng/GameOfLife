@@ -49,10 +49,10 @@ public class GameTest {
                         graph[i][j] = line.charAt(j)-'0';
                     }
                 }
-                game.initFromArray(height,width,graph);
+                //game.initFromArray(height,width,graph);
 
                 System.out.format("===========Case : %d =========",testCase++).println();
-                game.start(3);
+                //game.start(3);
             }
             //print(graph);
         } catch (FileNotFoundException e) {

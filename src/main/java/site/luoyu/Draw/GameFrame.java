@@ -1,5 +1,7 @@
 package site.luoyu.Draw;
 
+import site.luoyu.Core.RealCell;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -9,7 +11,7 @@ import java.awt.*;
  * Created by luoyu on 2017/6/3 0003.
  */
 public class GameFrame extends JFrame{
-    int[][] arrays=null;
+    RealCell[][] arrays=null;
     int h;
     int w;
     int BLOCK_SIZE=30;
@@ -28,7 +30,7 @@ public class GameFrame extends JFrame{
             for (int i = 0; i < h; i++) {
                 for (int j = 0; j < w; j++) {
                     //todo refactor
-                    if(arrays[i][j]==1){
+                    if(arrays[i][j].isAlive()){
                         int tx=i*BLOCK_SIZE;
                         int ty=j*BLOCK_SIZE;
                         g.fillRect(ty,tx,BLOCK_SIZE-BODERSIZESCALE,BLOCK_SIZE-BODERSIZESCALE);
@@ -40,7 +42,7 @@ public class GameFrame extends JFrame{
     };
     //Color black=new Color(0,0,0);
     //Color white=new Color(255,255,255);
-    public GameFrame(int[][] input){
+    public GameFrame(RealCell[][] input){
         super("GAME OF LIFE");
         arrays=input;
         h=arrays.length;
@@ -59,8 +61,8 @@ public class GameFrame extends JFrame{
         int h1=(int)(picHeight /h);
         BLOCK_SIZE=w1<h1?w1:h1;
         BODERSIZESCALE=(BLOCK_SIZE/10);
-        if(BODERSIZESCALE==0)
-            BODERSIZESCALE=1;
+        //if(BODERSIZESCALE==0)
+          //  BODERSIZESCALE=1;
         setSize(picWidth, picHeight +BODERSIZE+SLIDERSIZE);
         setVisible(true);
         setResizable(false);
@@ -85,7 +87,7 @@ public class GameFrame extends JFrame{
         panel.add(slider);
     }
     int freshTime=500;
-    public void fresh(int[][] a){
+    public void fresh(RealCell[][] a){
         arrays=a;
         repaint();
         try {

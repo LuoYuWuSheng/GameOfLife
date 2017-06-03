@@ -1,4 +1,5 @@
 import site.luoyu.Core.Game;
+import site.luoyu.Core.RealCell;
 
 import java.util.Random;
 
@@ -8,9 +9,9 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
 
-        int n=100;
-        int m=100;
-        int[][] a = getTheArray(n,m,true);
+        int n=500;
+        int m=500;
+        RealCell[][] a = getTheArray(n,m,false);
 
         Game game=new Game();
         //game.initFromFile("input.txt");
@@ -18,16 +19,21 @@ public class Main {
         game.start(0);
     }
 
-    public static int[][] getTheArray(int n,int m,boolean x){
-        int[][] a=new int[n][m];
-        for(int i=0;i<m;i++)
-            a[n/2][i]=1;
-        if(x){
-            for (int i = 0; i < 5; i++) {
-                int xx = getRandomNum(m);
-                a[n/2][xx]=0;
+    public static RealCell[][] getTheArray(int n,int m,boolean x){
+        RealCell[][] a=new RealCell[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                a[i][j] = new RealCell();
             }
         }
+        for(int i=0;i<m;i++)
+            a[n/2][i].alive=true;
+//        if(x){
+//            for (int i = 0; i < 5; i++) {
+//                int xx = getRandomNum(m);
+//                a[n/2][xx].alive=false;
+//            }
+//        }
         return a;
     }
     public static int getRandomNum(int max){
