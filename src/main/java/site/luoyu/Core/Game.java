@@ -16,6 +16,8 @@ public class Game {
 
     int[][] graph;
     int[][] temp;
+    final int ALIVE=1;
+    final int DIE=0;
 
     GameDrawer gameDrawer=null;
 
@@ -68,11 +70,11 @@ public class Game {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (temp[i][j] == 3)
-                    graph[i][j] = 1;
+                    graph[i][j] = ALIVE;
                 else if (temp[i][j] == 2) {
                     graph[i][j] = graph[i][j];
                 } else {
-                    graph[i][j] = 0;
+                    graph[i][j] = DIE;
                 }
             }
         }
