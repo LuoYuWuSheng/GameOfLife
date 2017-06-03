@@ -46,8 +46,7 @@ public class GameTest {
                         graph[i][j].alive = (line.charAt(j)-'0')==1;
                     }
                 }
-                //game.initFromArray(height,width,graph);
-
+                game.initFromArray(height,width,graph);
                 System.out.format("===========Case : %d =========",testCase++).println();
                 game.start(3);
             }
