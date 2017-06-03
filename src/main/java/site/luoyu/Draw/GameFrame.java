@@ -13,8 +13,8 @@ public class GameFrame extends JFrame{
     int h;
     int w;
     int BLOCK_SIZE=30;
-    int picH;
-    int picW;
+    int picHeight;
+    int picWidth;
     int BODERSIZE=30;
     int BODERSIZESCALE=5;
     int SLIDERSIZE=40;
@@ -23,7 +23,7 @@ public class GameFrame extends JFrame{
         public void paint(Graphics g) {
             super.paint(g);
             g.setColor(Color.white);
-            g.fillRect(0,0,picW,picH);
+            g.fillRect(0,0, picWidth, picHeight);
             g.setColor(Color.black);
             for (int i = 0; i < h; i++) {
                 for (int j = 0; j < w; j++) {
@@ -45,43 +45,41 @@ public class GameFrame extends JFrame{
         arrays=input;
         h=arrays.length;
         w=arrays[0].length;
-//        picH=BLOCK_SIZE*h;
-//        picW=BLOCK_SIZE*w;
+//        picHeight=BLOCK_SIZE*h;
+//        picWidth=BLOCK_SIZE*w;
         initIt();
     }
 
     private void initIt() {
 
         Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-        picW=(int)screen.getWidth();
-        picH=(int)screen.getHeight()-BODERSIZE-SLIDERSIZE;
-        int w1=(int)(picW/w);
-        int h1=(int)(picH/h);
+        picWidth =(int)screen.getWidth();
+        picHeight =(int)screen.getHeight()-BODERSIZE-SLIDERSIZE;
+        int w1=(int)(picWidth /w);
+        int h1=(int)(picHeight /h);
         BLOCK_SIZE=w1<h1?w1:h1;
         BODERSIZESCALE=(BLOCK_SIZE/10);
-        setSize(picW,picH+BODERSIZE+SLIDERSIZE);
+        if(BODERSIZESCALE==0)
+            BODERSIZESCALE=1;
+        setSize(picWidth, picHeight +BODERSIZE+SLIDERSIZE);
         setVisible(true);
-        //setResizable(false);
-        //this.setLayout();
-        panel.setSize(picW,picH);
+        setResizable(false);
+        panel.setSize(picWidth, picHeight);
         this.add(panel,BorderLayout.CENTER);
-//        this.pack();
         //create speed ctl
         JSlider slider = new JSlider(1,300);
         ChangeListener listener = new ChangeListener()
         {
             public void stateChanged(ChangeEvent event)
             {
-                //取出滑动条的值，并在文本中显示出来
                 JSlider source = (JSlider) event.getSource();
-                double scales=(source.getValue())*1.0/(picW-20);
+                double scales=(source.getValue())*1.0/(picWidth -20);
                 freshTime=(int)(scales*2000);
-                //System.out.println(source.getValue());
             }
         };
         panel.setLayout(null);
         slider.addChangeListener(listener);
-        slider.setBounds(0,picH,picW-20,SLIDERSIZE);
+        slider.setBounds(0, picHeight, picWidth -20,SLIDERSIZE);
         slider.setOpaque(false);
 
         panel.add(slider);
