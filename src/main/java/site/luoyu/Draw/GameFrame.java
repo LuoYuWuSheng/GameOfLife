@@ -13,6 +13,7 @@ public class GameFrame extends JFrame{
     final int BLOCK_SIZE=30;
     int picH;
     int picW;
+    final int BODERSIZE=30;
     JPanel panel = new JPanel(){
         @Override
         public void paint(Graphics g) {
@@ -20,13 +21,13 @@ public class GameFrame extends JFrame{
             g.setColor(Color.white);
             g.fillRect(0,0,picW,picH);
             g.setColor(Color.black);
-            for (int i = 0; i < w; i++) {
-                for (int j = 0; j < h; j++) {
+            for (int i = 0; i < h; i++) {
+                for (int j = 0; j < w; j++) {
                     //todo refactor
                     if(arrays[i][j]==1){
                         int tx=i*BLOCK_SIZE;
                         int ty=j*BLOCK_SIZE;
-                        g.fillRect(tx,ty,BLOCK_SIZE,BLOCK_SIZE);
+                        g.fillRect(ty,tx,BLOCK_SIZE,BLOCK_SIZE);
                     }
                 }
 
@@ -42,19 +43,16 @@ public class GameFrame extends JFrame{
         w=arrays[0].length;
         picH=BLOCK_SIZE*h;
         picW=BLOCK_SIZE*w;
-        setSize(picW,picH);
+        setSize(picW,picH+BODERSIZE);
         setVisible(true);
 //        setResizable(false);
-        this.add(panel);
+        //this.setLayout();
+        this.add(panel,BorderLayout.CENTER);
     }
     public void fresh(int[][] a){
         arrays=a;
         repaint();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 
 }

@@ -18,12 +18,22 @@ public class Game {
     int[][] temp;
     GameDrawer gameDrawer=null;
 
+    public int getFreshTime() {
+        return freshTime;
+    }
+
+    public void setFreshTime(int freshTime) {
+        this.freshTime = freshTime;
+    }
+
+    int freshTime=1000;
     public Game() {
     }
 
-    public Game(int height, int width) {
+    public Game(int height, int width,int freshTime) {
         this.height = height;
         this.width = width;
+        this.freshTime = freshTime;
         this.graph = new int[height][width];
         //this.temp = new int[height][width];
     }
@@ -89,7 +99,7 @@ public class Game {
                     for (int k = 0; k < dx.length; k++) {
                         int nx = i + dx[k];
                         int ny = j + dy[k];
-                        if (nx >= 0 && nx < height && ny >= 0 && ny < height)
+                        if (nx >= 0 && nx < height && ny >= 0 && ny < width)
                             temp[nx][ny]++;
                     }
                 }
@@ -111,7 +121,7 @@ public class Game {
 
     private void paintByDrawer(){
         if(gameDrawer==null){
-            gameDrawer=new GameDrawer();
+            gameDrawer=new GameDrawer(freshTime);
             gameDrawer.initGameFrameFromArray(graph);
         }
         else {

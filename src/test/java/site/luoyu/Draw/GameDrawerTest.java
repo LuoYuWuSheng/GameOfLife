@@ -10,7 +10,7 @@ public class GameDrawerTest {
     private GameDrawer drawer;
     @Before
     public void init(){
-        drawer = new GameDrawer();
+        drawer = new GameDrawer(1000);
     }
     @Test
     public void initGameFrameFromArray() throws Exception {
