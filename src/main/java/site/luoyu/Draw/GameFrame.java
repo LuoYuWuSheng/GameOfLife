@@ -1,6 +1,8 @@
 package site.luoyu.Draw;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 /**
@@ -43,12 +45,35 @@ public class GameFrame extends JFrame{
         w=arrays[0].length;
         picH=BLOCK_SIZE*h;
         picW=BLOCK_SIZE*w;
+        initIt();
+    }
+
+    private void initIt() {
         setSize(picW,picH+BODERSIZE);
         setVisible(true);
-//        setResizable(false);
+        //setResizable(false);
         //this.setLayout();
         this.add(panel,BorderLayout.CENTER);
+//        this.pack();
+        //create speed ctl
+        JSlider slider = new JSlider(1,10);
+        ChangeListener listener = new ChangeListener()
+        {
+            public void stateChanged(ChangeEvent event)
+            {
+                //取出滑动条的值，并在文本中显示出来
+                JSlider source = (JSlider) event.getSource();
+                source.getValue();
+            }
+        };
+        panel.setLayout(null);
+        slider.addChangeListener(listener);
+        slider.setBounds(100,200,20,100);
+        slider.setOpaque(false);
+
+        panel.add(slider);
     }
+
     public void fresh(int[][] a){
         arrays=a;
         repaint();

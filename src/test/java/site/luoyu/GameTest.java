@@ -40,6 +40,7 @@ public class GameTest {
             while (sc.hasNextLine()){
                 int height = sc.nextInt();
                 int width = sc.nextInt();
+                int freshTime = sc.nextInt();
                 int[][] graph = new int[height][width];
                 sc.nextLine();
                 for (int i = 0; i < height; i++) {

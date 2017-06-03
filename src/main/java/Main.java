@@ -8,6 +8,6 @@ public class Main {
 
         Game game=new Game();
         game.initFromFile("input.txt");
-        game.start(2);
+        game.start(0);
     }
 }
