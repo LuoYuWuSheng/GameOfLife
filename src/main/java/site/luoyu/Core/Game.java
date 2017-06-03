@@ -106,11 +106,13 @@ public class Game {
         }
     }
 
-    public void print(int[][] array) {
+    public void print(RealCell[][] array) {
         System.out.println("-----------------------------");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(array[i][j]);
+                if (array[i][j].isAlive()) System.out.println("1");
+                else System.out.println("0");
+//                System.out.print(array[i][j]);
                 System.out.print(" ");
             }
             System.out.println();
@@ -135,7 +137,7 @@ public class Game {
         }
         for (int i = 0; i < generation; i++) {
             grow();
-            //print(graph);
+            print(graph);
             paintByDrawer();
         }
     }

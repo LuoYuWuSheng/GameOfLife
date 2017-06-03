@@ -9,13 +9,13 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
 
-        int n=50;
-        int m=50;
-        RealCell[][] a = getTheArray(n,m,false);
+//        int n=50;
+//        int m=50;
+//        RealCell[][] a = getTheArray(n,m,false);
 
         Game game=new Game();
-        //game.initFromFile("input.txt");
-        game.initFromArray(n,m,a);
+        game.initFromFile("input.txt");
+//        game.initFromArray(n,m,a);
         game.start(0);
     }
 

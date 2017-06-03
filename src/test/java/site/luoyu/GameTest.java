@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import site.luoyu.Core.Game;
+import site.luoyu.Core.RealCell;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,10 +26,6 @@ public class GameTest {
     public void afther() {
     }
 
-    @Test
-    public void initFromFile() throws Exception {
-
-    }
 
     @Test
     public void start() throws Exception {
@@ -40,21 +37,21 @@ public class GameTest {
             while (sc.hasNextLine()){
                 int height = sc.nextInt();
                 int width = sc.nextInt();
-                int freshTime = sc.nextInt();
-                int[][] graph = new int[height][width];
+                RealCell[][] graph = new RealCell[height][width];
                 sc.nextLine();
                 for (int i = 0; i < height; i++) {
                     String line = sc.nextLine();
                     for (int j = 0; j < width; j++) {
-                        graph[i][j] = line.charAt(j)-'0';
+                        graph[i][j] = new RealCell();
+                        graph[i][j].alive = (line.charAt(j)-'0')==1;
                     }
                 }
                 //game.initFromArray(height,width,graph);
 
                 System.out.format("===========Case : %d =========",testCase++).println();
-                //game.start(3);
+                game.start(3);
             }
-            //print(graph);
+//            print(graph);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally {
