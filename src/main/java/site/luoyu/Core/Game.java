@@ -13,9 +13,10 @@ import java.util.Scanner;
  */
 public class Game {
     private int height, width;
-    private int speed = 1;
+    int freshTime=1000;
     int[][] graph;
     int[][] temp;
+
     GameDrawer gameDrawer=null;
 
     public int getFreshTime() {
@@ -25,8 +26,6 @@ public class Game {
     public void setFreshTime(int freshTime) {
         this.freshTime = freshTime;
     }
-
-    int freshTime=1000;
     public Game() {
     }
 
@@ -51,6 +50,7 @@ public class Game {
             Scanner sc = new Scanner(inputStream);
             this.height = sc.nextInt();
             this.width = sc.nextInt();
+            setFreshTime(sc.nextInt());
             this.graph = new int[height][width];
             sc.nextLine();
             for (int i = 0; i < height; i++) {
