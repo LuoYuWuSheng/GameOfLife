@@ -74,6 +74,7 @@ public class Game {
         calc();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
+
                 if (graph[i][j].count == 3)
                     graph[i][j].alive = true;
                 else if (graph[i][j].count == 2) {
@@ -81,6 +82,7 @@ public class Game {
                 } else {
                     graph[i][j].alive = false;
                 }
+                graph[i][j].count=0;
             }
         }
     }

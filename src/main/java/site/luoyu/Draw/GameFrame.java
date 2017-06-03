@@ -62,7 +62,7 @@ public class GameFrame extends JFrame{
         BLOCK_SIZE=w1<h1?w1:h1;
         BODERSIZESCALE=(BLOCK_SIZE/10);
         //if(BODERSIZESCALE==0)
-          //  BODERSIZESCALE=1;
+           // BODERSIZESCALE=1;
         setSize(picWidth, picHeight +BODERSIZE+SLIDERSIZE);
         setVisible(true);
         setResizable(false);

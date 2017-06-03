@@ -9,8 +9,8 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
 
-        int n=500;
-        int m=500;
+        int n=50;
+        int m=50;
         RealCell[][] a = getTheArray(n,m,false);
 
         Game game=new Game();
