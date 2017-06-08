@@ -1,5 +1,7 @@
 package site.luoyu.Draw;
 
+import site.luoyu.Core.RealCell;
+
 import javax.swing.*;
 
 /**
@@ -11,12 +13,12 @@ public class GameDrawer {
     public GameDrawer() {
     }
 
-    public void initGameFrameFromArray(int[][] a) {
+    public void initGameFrameFromArray(RealCell[][] a) {
         gameFrame = new GameFrame(a);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
-    public void freshFrameByArray(int[][] a){
+    public void freshFrameByArray(RealCell[][] a){
         gameFrame.fresh(a);
 
     }

@@ -14,8 +14,10 @@ import java.util.Scanner;
 public class Game {
     private int height, width;
 
-    int[][] graph;
-    int[][] temp;
+    RealCell[][] graph;
+    //int[][] temp;
+    final int ALIVE=1;
+    final int DIE=0;
 
     GameDrawer gameDrawer=null;
 
@@ -25,10 +27,10 @@ public class Game {
     public Game(int height, int width) {
         this.height = height;
         this.width = width;
-        this.graph = new int[height][width];
+        this.graph = new RealCell[height][width];
     }
 
-    public void initFromArray(int height,int width,int[][] data) {
+    public void initFromArray(int height,int width,RealCell[][] data) {
         this.height = height;
         this.width = width;
         this.graph = data;
@@ -41,12 +43,17 @@ public class Game {
             Scanner sc = new Scanner(inputStream);
             this.height = sc.nextInt();
             this.width = sc.nextInt();
-            this.graph = new int[height][width];
+            this.graph = new RealCell[height][width];
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    this.graph[i][j] = new RealCell();
+                }
+            }
             sc.nextLine();
             for (int i = 0; i < height; i++) {
                 String line = sc.nextLine();
                 for (int j = 0; j < width; j++) {
-                    graph[i][j] = line.charAt(j)-'0';
+                    graph[i][j].alive = (line.charAt(j)-'0')==1;
                 }
             }
 
@@ -67,13 +74,15 @@ public class Game {
         calc();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (temp[i][j] == 3)
-                    graph[i][j] = 1;
-                else if (temp[i][j] == 2) {
+
+                if (graph[i][j].count == 3)
+                    graph[i][j].alive = true;
+                else if (graph[i][j].count == 2) {
                     graph[i][j] = graph[i][j];
                 } else {
-                    graph[i][j] = 0;
+                    graph[i][j].alive = false;
                 }
+                graph[i][j].count=0;
             }
         }
     }
@@ -82,26 +91,28 @@ public class Game {
     int[] dy = {1, -1, -1, 0, 1, -1,  0,  1};
 
     private void calc() {
-        this.temp = new int[height][width];
+        //this.temp = new int[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (graph[i][j] == 1) {
+                if (graph[i][j].alive == true) {
                     for (int k = 0; k < dx.length; k++) {
                         int nx = i + dx[k];
                         int ny = j + dy[k];
                         if (nx >= 0 && nx < height && ny >= 0 && ny < width)
-                            temp[nx][ny]++;
+                            graph[nx][ny].count++;
                     }
                 }
             }
         }
     }
 
-    public void print(int[][] array) {
+    public void print(RealCell[][] array) {
         System.out.println("-----------------------------");
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(array[i][j]);
+                if (array[i][j].isAlive()) System.out.println("1");
+                else System.out.println("0");
+//                System.out.print(array[i][j]);
                 System.out.print(" ");
             }
             System.out.println();
@@ -126,7 +137,7 @@ public class Game {
         }
         for (int i = 0; i < generation; i++) {
             grow();
-            //print(graph);
+            print(graph);
             paintByDrawer();
         }
     }
